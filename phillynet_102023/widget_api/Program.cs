@@ -1,3 +1,4 @@
+using widget_api.Repositories;
 using widget_api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 //
 //  DI = dependency injection
+builder.Services.AddSingleton<IWidgetRepository, WidgetRepository>();
 builder.Services.AddSingleton<IWidgetService, WidgetService>();
 
 //  TO FIX CORS
