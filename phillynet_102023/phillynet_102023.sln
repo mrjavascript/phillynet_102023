@@ -1,8 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "widget_api", "widget_api\widget_api.csproj", "{C365D262-61CC-4FD4-934A-FE6277E78B5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C365D262-61CC-4FD4-934A-FE6277E78B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C365D262-61CC-4FD4-934A-FE6277E78B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C365D262-61CC-4FD4-934A-FE6277E78B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C365D262-61CC-4FD4-934A-FE6277E78B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
