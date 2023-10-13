@@ -5,13 +5,13 @@ namespace widget_api.Repositories;
 
 public class WidgetRepository : IWidgetRepository
 {
-    public IEnumerable<Widget> GetWidgets()
+    public async Task<IEnumerable<Widget>> GetWidgets()
     {
         //
         //  call firestore
-        var db = FirestoreDb.Create("phillynet-widgetdb");
+        var db = await FirestoreDb.CreateAsync("phillynet-widgetdb");
         var collection = db.Collection("widgets");
-        var snapshot = collection.GetSnapshotAsync().Result;
+        var snapshot = await collection.GetSnapshotAsync();
 
         //
         //  populate
@@ -31,8 +31,14 @@ public class WidgetRepository : IWidgetRepository
         return widgets;
     }
 
-    public void CreateWidget(Widget widget)
+    public async Task CreateWidget(Widget widget)
     {
-        throw new NotImplementedException();
+        var db = await FirestoreDb.CreateAsync("phillynet-widgetdb");
+        var collection = db.Collection("widgets");
+        await collection.AddAsync(new Dictionary<string, object>
+        {
+            { "widgetName", widget.WidgetName },
+            { "widgetPrice", widget.WidgetPrice },
+        });
     }
 }

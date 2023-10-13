@@ -6,5 +6,5 @@ public record Widget
 
     public string? WidgetName { get; set; }
 
-    public decimal WidgetPrice { get; set; }
+    public decimal? WidgetPrice { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using Google.Cloud.Firestore;
-using widget_api.Models;
+﻿using widget_api.Models;
 using widget_api.Repositories;
 
 namespace widget_api.Services;
@@ -13,13 +12,18 @@ public class WidgetService : IWidgetService
         _widgetRepository = widgetRepository;
     }
 
-    public IEnumerable<Widget> GetWidgets()
+    public async Task<IEnumerable<Widget>> GetWidgets()
     {
-        return _widgetRepository.GetWidgets();
+        return await _widgetRepository.GetWidgets();
     }
 
-    public void CreateWidget(Widget widget)
+    public async Task CreateWidget(Widget widget)
     {
-        _widgetRepository.CreateWidget(widget);
+        if (widget == null || string.IsNullOrWhiteSpace(widget.WidgetName) || widget.WidgetPrice == null)
+        {
+            throw new ArgumentNullException("widget");
+        }
+
+        await _widgetRepository.CreateWidget(widget);
     }
 }

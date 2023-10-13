@@ -4,6 +4,6 @@ namespace widget_api.Services;
 
 public interface IWidgetService
 {
-    IEnumerable<Widget> GetWidgets();
-    void CreateWidget(Widget widget);
+    Task<IEnumerable<Widget>> GetWidgets();
+    Task CreateWidget(Widget widget);
 }

@@ -16,15 +16,22 @@ public class WidgetController
     }
 
     [HttpGet]
-    public IEnumerable<Widget> Get()
+    public async Task<IEnumerable<Widget>> Get()
     {
-        return _widgetService.GetWidgets();
+        return await _widgetService.GetWidgets();
     }
 
     [HttpPost]
-    public IActionResult Create([FromBody] Widget widget)
+    public async Task<IActionResult> Create([FromBody] Widget widget)
     {
-        _widgetService.CreateWidget(widget);
-        return new OkResult();
+        try
+        {
+            await _widgetService.CreateWidget(widget);
+            return new OkResult();
+        }
+        catch (Exception e)
+        {
+            return new BadRequestResult();
+        }
     }
 }
