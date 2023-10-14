@@ -17,13 +17,13 @@ public class WidgetService : IWidgetService
         return await _widgetRepository.GetWidgets();
     }
 
-    public async Task CreateWidget(Widget widget)
+    public async Task<string> CreateWidget(Widget widget)
     {
         if (widget == null || string.IsNullOrWhiteSpace(widget.WidgetName) || widget.WidgetPrice == null)
         {
             throw new ArgumentNullException("widget");
         }
 
-        await _widgetRepository.CreateWidget(widget);
+        return await _widgetRepository.CreateWidget(widget);
     }
 }

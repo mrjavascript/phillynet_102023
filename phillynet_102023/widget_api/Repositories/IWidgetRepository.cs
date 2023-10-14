@@ -5,5 +5,5 @@ namespace widget_api.Repositories;
 public interface IWidgetRepository
 {
     Task<IEnumerable<Widget>> GetWidgets();
-    Task CreateWidget(Widget widget);
+    Task<string> CreateWidget(Widget widget);
 }

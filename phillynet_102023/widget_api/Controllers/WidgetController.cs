@@ -22,16 +22,8 @@ public class WidgetController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Widget widget)
+    public async Task<string> Create([FromBody] Widget widget)
     {
-        try
-        {
-            await _widgetService.CreateWidget(widget);
-            return new OkResult();
-        }
-        catch (Exception e)
-        {
-            return new BadRequestResult();
-        }
+        return await _widgetService.CreateWidget(widget);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Google.Cloud.Firestore;
+﻿using System.Globalization;
+using Google.Cloud.Firestore;
 using widget_api.Models;
 
 namespace widget_api.Repositories;
@@ -31,14 +32,16 @@ public class WidgetRepository : IWidgetRepository
         return widgets;
     }
 
-    public async Task CreateWidget(Widget widget)
+    public async Task<string> CreateWidget(Widget widget)
     {
         var db = await FirestoreDb.CreateAsync("phillynet-widgetdb");
         var collection = db.Collection("widgets");
-        await collection.AddAsync(new Dictionary<string, object>
+        var widgetPrice = widget.WidgetPrice ?? 0;
+        var document = await collection.AddAsync(new Dictionary<string, object>
         {
-            { "widgetName", widget.WidgetName },
-            { "widgetPrice", widget.WidgetPrice },
+            { "widgetName", widget.WidgetName ?? string.Empty },
+            { "widgetPrice", widgetPrice.ToString(CultureInfo.InvariantCulture) },
         });
+        return document.Id;
     }
 }
